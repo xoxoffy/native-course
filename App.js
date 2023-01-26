@@ -19,12 +19,18 @@ export default function App() {
     } else if (enteredGoalText) {
       setInputIsValid(true);
     }
-    setGoalList((prevState) => [
-      ...prevState,
+    setGoalList((currentGoals) => [
+      ...currentGoals,
       { text: enteredGoalText, key: Math.random().toString() },
     ]);
 
     setEnteredGoalText('');
+  };
+
+  const deleteGoalHandler = (id) => {
+    setGoalList((currentGoals) => {
+      return currentGoals.filter((goal) => goal.key !== id);
+    });
   };
 
   return (
@@ -35,7 +41,7 @@ export default function App() {
         inputIsValid={inputIsValid}
         enteredGoalText={enteredGoalText}
       />
-      <GoalList goalList={goalList} />
+      <GoalList goalList={goalList} deleteGoalHandler={deleteGoalHandler} />
     </View>
   );
 }
@@ -44,28 +50,5 @@ const styles = StyleSheet.create({
   appContainer: {
     paddingTop: 50,
     paddingHorizontal: 16,
-  },
-  inputContainer: {
-    alignItems: 'center',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    flexWrap: 'wrap',
-    marginTop: 10,
-    paddingBottom: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: 'grey',
-  },
-  textInput: {
-    borderWidth: 1,
-    borderColor: 'black',
-    padding: 10,
-    width: '70%',
-    marginRight: 5,
-  },
-
-  errorText: {
-    marginTop: 25,
-    color: 'red',
-    fontWeight: 'bold',
   },
 });

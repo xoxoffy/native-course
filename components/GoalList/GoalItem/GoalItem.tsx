@@ -1,20 +1,32 @@
 import React from 'react';
-import { StyleSheet, View, Text, ListRenderItemInfo } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  ListRenderItemInfo,
+  Pressable,
+} from 'react-native';
 
-type GoalList = {
+type itemData = {
   key: string;
   text: string;
 };
 
 interface Props {
-  itemData: ListRenderItemInfo<GoalList>;
+  itemData: ListRenderItemInfo<itemData>;
+  deleteGoalHandler: () => void;
 }
 
-const GoalItem: React.FunctionComponent<Props> = ({ itemData }) => {
+const GoalItem: React.FunctionComponent<Props> = ({
+  itemData,
+  deleteGoalHandler,
+}) => {
   return (
-    <View style={styles.goalItem}>
-      <Text style={styles.goalItemText}>{itemData.item.text}</Text>
-    </View>
+    <Pressable onPress={deleteGoalHandler.bind(this, itemData.item.key)}>
+      <View style={styles.goalItem}>
+        <Text style={styles.goalItemText}>{itemData.item.text}</Text>
+      </View>
+    </Pressable>
   );
 };
 

@@ -17,7 +17,7 @@ const GoalInput: React.FunctionComponent<Props> = ({
     <View style={styles.inputContainer}>
       <TextInput
         style={styles.textInput}
-        placeholder="Your course goal!"
+        placeholder="Enter your goal here!"
         onChangeText={goalInputHandler}
         value={enteredGoalText}
       />

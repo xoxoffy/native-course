@@ -9,9 +9,13 @@ type GoalList = {
 
 interface Props {
   goalList: GoalList[];
+  deleteGoalHandler: () => void;
 }
 
-const GoalList: React.FunctionComponent<Props> = ({ goalList }) => {
+const GoalList: React.FunctionComponent<Props> = ({
+  goalList,
+  deleteGoalHandler,
+}) => {
   return (
     <View>
       <FlatList
@@ -21,7 +25,12 @@ const GoalList: React.FunctionComponent<Props> = ({ goalList }) => {
           return item.key;
         }}
         renderItem={(itemData) => {
-          return <GoalItem itemData={itemData} />;
+          return (
+            <GoalItem
+              itemData={itemData}
+              deleteGoalHandler={deleteGoalHandler}
+            />
+          );
         }}
       />
     </View>
