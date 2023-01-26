@@ -1,13 +1,7 @@
-import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  Button,
-  TextInput,
-  FlatList,
-} from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import GoalList from './components/GoalList/GoalList';
+import GoalInput from './components/GoalInput';
 
 export default function App() {
   const [enteredGoalText, setEnteredGoalText] = useState('');
@@ -35,35 +29,13 @@ export default function App() {
 
   return (
     <View style={styles.appContainer}>
-      <View style={styles.inputContainer}>
-        <TextInput
-          style={styles.textInput}
-          placeholder="Your course goal!"
-          onChangeText={goalInputHandler}
-          value={enteredGoalText}
-        />
-
-        <Button title="Add Goal" onPress={addGoalHandler} />
-        {!inputIsValid ? (
-          <Text style={styles.errorText}>Pole nie może być puste!</Text>
-        ) : null}
-      </View>
-      <View>
-        <FlatList
-          style={styles.goalList}
-          data={goalList}
-          keyExtractor={(item, index) => {
-            return item.key;
-          }}
-          renderItem={(itemData) => {
-            return (
-              <View style={styles.goalItem}>
-                <Text style={styles.goalItemText}>{itemData.item.text}</Text>
-              </View>
-            );
-          }}
-        />
-      </View>
+      <GoalInput
+        goalInputHandler={goalInputHandler}
+        addGoalHandler={addGoalHandler}
+        inputIsValid={inputIsValid}
+        enteredGoalText={enteredGoalText}
+      />
+      <GoalList goalList={goalList} />
     </View>
   );
 }
@@ -90,19 +62,7 @@ const styles = StyleSheet.create({
     width: '70%',
     marginRight: 5,
   },
-  goalItem: {
-    margin: 8,
-    padding: 8,
-    borderRadius: 6,
-    backgroundColor: '#34568B',
-  },
-  goalItemText: {
-    color: 'white',
-    textAlign: 'center',
-  },
-  goalList: {
-    marginBottom: 85,
-  },
+
   errorText: {
     marginTop: 25,
     color: 'red',
