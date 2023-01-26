@@ -2,7 +2,16 @@ import React from 'react';
 import { FlatList, View, Text, StyleSheet } from 'react-native';
 import GoalItem from './GoalItem/GoalItem';
 
-const GoalList = ({ goalList }) => {
+type GoalList = {
+  key: string;
+  text: string;
+};
+
+interface Props {
+  goalList: GoalList[];
+}
+
+const GoalList: React.FunctionComponent<Props> = ({ goalList }) => {
   return (
     <View>
       <FlatList

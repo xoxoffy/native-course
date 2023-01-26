@@ -1,6 +1,13 @@
 import { View, TextInput, Button, Text, StyleSheet } from 'react-native';
 
-const GoalInput = ({
+interface Props {
+  goalInputHandler: () => void;
+  addGoalHandler: () => void;
+  inputIsValid: boolean;
+  enteredGoalText: string;
+}
+
+const GoalInput: React.FunctionComponent<Props> = ({
   goalInputHandler,
   addGoalHandler,
   inputIsValid,

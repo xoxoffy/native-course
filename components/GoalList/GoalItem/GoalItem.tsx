@@ -1,7 +1,16 @@
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, ListRenderItemInfo } from 'react-native';
 
-const GoalItem = ({ itemData }) => {
+type GoalList = {
+  key: string;
+  text: string;
+};
+
+interface Props {
+  itemData: ListRenderItemInfo<GoalList>;
+}
+
+const GoalItem: React.FunctionComponent<Props> = ({ itemData }) => {
   return (
     <View style={styles.goalItem}>
       <Text style={styles.goalItemText}>{itemData.item.text}</Text>

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import GoalList from './components/GoalList/GoalList';
-import GoalInput from './components/GoalInput';
+import GoalInput from './components/GoalInput/GoalInput';
 
 export default function App() {
   const [enteredGoalText, setEnteredGoalText] = useState('');
