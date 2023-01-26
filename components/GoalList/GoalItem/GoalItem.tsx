@@ -36,9 +36,10 @@ const GoalItem: React.FunctionComponent<Props> = ({
 
 const styles = StyleSheet.create({
   goalItem: {
-    margin: 8,
     borderRadius: 6,
     backgroundColor: '#34568B',
+    width: 300,
+    marginTop: 10,
   },
   pressedItem: {
     opacity: 0.5,

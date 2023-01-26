@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
 import { StyleSheet, View, Button, Image } from 'react-native';
 import GoalList from './components/GoalList/GoalList';
 import GoalInput from './components/GoalInput/GoalInput';
+import { StatusBar } from 'expo-status-bar';
 
 export default function App() {
   const [enteredGoalText, setEnteredGoalText] = useState('');
@@ -40,26 +41,27 @@ export default function App() {
   };
 
   return (
-    <View style={styles.appContainer}>
-      <View style={styles.newGoalButton}>
-        <Button
-          onPress={() => setModalIsVisible(true)}
-          title="Add New Goal"
-          color="#34568B"
+    <Fragment>
+      <StatusBar style="dark" />
+      <View style={styles.appContainer}>
+        <View style={styles.newGoalButton}>
+          <Button
+            onPress={() => setModalIsVisible(true)}
+            title="Add New Goal"
+            color="#34568B"
+          />
+        </View>
+        <GoalList goalList={goalList} deleteGoalHandler={deleteGoalHandler} />
+        <GoalInput
+          goalInputHandler={goalInputHandler}
+          addGoalHandler={addGoalHandler}
+          inputIsValid={inputIsValid}
+          enteredGoalText={enteredGoalText}
+          modalIsVisible={modalIsVisible}
+          hideModalHandler={hideModalHandler}
         />
       </View>
-
-      <GoalInput
-        goalInputHandler={goalInputHandler}
-        addGoalHandler={addGoalHandler}
-        inputIsValid={inputIsValid}
-        enteredGoalText={enteredGoalText}
-        modalIsVisible={modalIsVisible}
-        hideModalHandler={hideModalHandler}
-      />
-
-      <GoalList goalList={goalList} deleteGoalHandler={deleteGoalHandler} />
-    </View>
+    </Fragment>
   );
 }
 
@@ -67,10 +69,16 @@ const styles = StyleSheet.create({
   appContainer: {
     paddingHorizontal: 12,
     alignItems: 'center',
+    backgroundColor: '#e7eaf6',
   },
   newGoalButton: {
     justifyContent: 'center',
     width: '100%',
     height: '20%',
+    paddingTop: 120,
+    marginBottom: 30,
+    marginTop: -60,
+    borderBottomColor: '#8f6565',
+    borderBottomWidth: 1,
   },
 });
