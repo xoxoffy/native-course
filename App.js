@@ -48,6 +48,7 @@ export default function App() {
           color="#34568B"
         />
       </View>
+
       <GoalInput
         goalInputHandler={goalInputHandler}
         addGoalHandler={addGoalHandler}
@@ -64,11 +65,12 @@ export default function App() {
 
 const styles = StyleSheet.create({
   appContainer: {
-    paddingTop: 50,
     paddingHorizontal: 12,
+    alignItems: 'center',
   },
   newGoalButton: {
     justifyContent: 'center',
-    height: '30%',
+    width: '100%',
+    height: '20%',
   },
 });

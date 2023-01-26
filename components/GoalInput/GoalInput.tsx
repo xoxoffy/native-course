@@ -1,4 +1,12 @@
-import { View, TextInput, Button, Text, StyleSheet, Modal } from 'react-native';
+import {
+  View,
+  TextInput,
+  Button,
+  Text,
+  StyleSheet,
+  Modal,
+  Image,
+} from 'react-native';
 
 interface Props {
   goalInputHandler: () => void;
@@ -39,6 +47,11 @@ const GoalInput: React.FunctionComponent<Props> = ({
           <Button title="Cancel" onPress={hideModalHandler} color={'#34568B'} />
         </View>
       </View>
+
+      <Image
+        style={styles.image}
+        source={require('../../assets/images/clipart361544.png')}
+      />
     </Modal>
   );
 };
@@ -71,6 +84,12 @@ const styles = StyleSheet.create({
   },
   button: {
     marginVertical: 8,
+  },
+  image: {
+    width: 350,
+    height: 350,
+    marginTop: 100,
+    marginLeft: 15,
   },
 });
 export default GoalInput;
