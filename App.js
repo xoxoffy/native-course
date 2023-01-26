@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Button, Image } from 'react-native';
 import GoalList from './components/GoalList/GoalList';
 import GoalInput from './components/GoalInput/GoalInput';
 
@@ -7,6 +7,7 @@ export default function App() {
   const [enteredGoalText, setEnteredGoalText] = useState('');
   const [goalList, setGoalList] = useState([]);
   const [inputIsValid, setInputIsValid] = useState(true);
+  const [modalIsVisible, setModalIsVisible] = useState(false);
 
   const goalInputHandler = (enteredText) => {
     setEnteredGoalText(enteredText);
@@ -25,6 +26,7 @@ export default function App() {
     ]);
 
     setEnteredGoalText('');
+    setModalIsVisible(false);
   };
 
   const deleteGoalHandler = (id) => {
@@ -33,14 +35,28 @@ export default function App() {
     });
   };
 
+  const hideModalHandler = () => {
+    setModalIsVisible(false);
+  };
+
   return (
     <View style={styles.appContainer}>
+      <View style={styles.newGoalButton}>
+        <Button
+          onPress={() => setModalIsVisible(true)}
+          title="Add New Goal"
+          color="#34568B"
+        />
+      </View>
       <GoalInput
         goalInputHandler={goalInputHandler}
         addGoalHandler={addGoalHandler}
         inputIsValid={inputIsValid}
         enteredGoalText={enteredGoalText}
+        modalIsVisible={modalIsVisible}
+        hideModalHandler={hideModalHandler}
       />
+
       <GoalList goalList={goalList} deleteGoalHandler={deleteGoalHandler} />
     </View>
   );
@@ -49,6 +65,10 @@ export default function App() {
 const styles = StyleSheet.create({
   appContainer: {
     paddingTop: 50,
-    paddingHorizontal: 16,
+    paddingHorizontal: 12,
+  },
+  newGoalButton: {
+    justifyContent: 'center',
+    height: '30%',
   },
 });
