@@ -22,24 +22,31 @@ const GoalItem: React.FunctionComponent<Props> = ({
   deleteGoalHandler,
 }) => {
   return (
-    <Pressable onPress={deleteGoalHandler.bind(this, itemData.item.key)}>
-      <View style={styles.goalItem}>
+    <View style={styles.goalItem}>
+      <Pressable
+        android_ripple={{ color: '#1f3352' }}
+        onPress={deleteGoalHandler.bind(this, itemData.item.key)}
+        style={({ pressed }) => pressed && styles.pressedItem}
+      >
         <Text style={styles.goalItemText}>{itemData.item.text}</Text>
-      </View>
-    </Pressable>
+      </Pressable>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   goalItem: {
     margin: 8,
-    padding: 8,
     borderRadius: 6,
     backgroundColor: '#34568B',
+  },
+  pressedItem: {
+    opacity: 0.5,
   },
   goalItemText: {
     color: 'white',
     textAlign: 'center',
+    padding: 8,
   },
 });
 
